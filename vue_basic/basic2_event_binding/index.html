@@ -19,10 +19,17 @@
     <section id="events">
       <h2>Events in Action</h2>
       <button v-on:click="add(5)">5 증가</button>
-      <button v-on:click="remove(5)">5 감소</button>
-      <p>Result: {{ counter }}</p>
-      <input type="text" v-on:input="setName" />
-      <p>{{name}}</p>
+      <button v-on:click="reset">초기화</button>
+      <button v-on:click.right="remove(5)">5 감소</button>
+      <p v-once>초깃값: {{ counter }}</p>
+      <p>결괏값: {{ counter }}</p>
+      <input type="text" v-on:input="setName($event, '하잇')" />
+      <p>{{ name }}</p>
+      <form v-on:submit.prevent="submit">
+        <input type="text" v-on:input="setSignupName" />
+        <p>keyup:{{ confirmName }}</p>
+        <button>회원가입</button>
+      </form>
     </section>
   </body>
 </html>
