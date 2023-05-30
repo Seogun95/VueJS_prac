@@ -18,11 +18,24 @@
     </header>
     <section id="user-goals">
       <h2>My course goals</h2>
-      <input type="text" />
-      <button>Add Goal</button>
-      <p>No goals have been added yet - please start adding some!</p>
+      <form for="goal" @submit.prevent="addGoals">
+        <input type="text" v-model="listValue" id="goal" ref="goalRef" />
+        <button type="submit">Add Goal</button>
+      </form>
+      <p v-if="goals.length === 0">
+        No goals have been added yet - please start adding some!
+      </p>
+      <ul v-else-if="goals.length > 0">
+        <li v-for="(goal, index) in goals" :key="goal.id">
+          {{index}} - {{goal}}
+          <button @click="removeGoals(index)">삭제</button>
+          <input type="text" />
+        </li>
+      </ul>
       <ul>
-        <li>Goal</li>
+        <li v-for="(value, key) in test" :key="key">
+          이름: {{value.name}} / 나이: {{value.age}}
+        </li>
       </ul>
     </section>
   </body>
